@@ -1,0 +1,20 @@
+version: "3"
+services:
+  backend:
+    container_name: nestjs-app
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    environment:
+      - MONGO_URI=mongodb+srv://admin:tolucajs123admin@blognews.95rqp73.mongodb.net/
+  frontend:
+    container_name: vuejs-app
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+    depends_on:
+      - backend
